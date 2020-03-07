@@ -11,7 +11,10 @@ const Blog = () => {
     const getPosts = useCallback(() => {
         axios.get('http://jsonplaceholder.typicode.com/posts')
             .then(response => {
-                setPosts(response.data);
+                setPosts(response.data.slice(0, 4).map(post => ({
+                    ...post,
+                    author: 'Max',
+                })));
             })
     }, [setPosts]);
 
@@ -22,7 +25,7 @@ const Blog = () => {
     return (
         <div>
             <section className="Posts">
-                {posts.map(post => <Post key={post.id} title={post.title} />)}
+                {posts.map(({ id, title, author }) => <Post key={id} title={title} author={author} />)}
             </section>
             <section>
                 <FullPost />
