@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Post.css';
 
-const post = ({ title, author }) => (
-    <article className="Post">
+const Post = ({ title, author, clickHandler }) => (
+    <article className="Post" onClick={clickHandler}>
         <h1>{title}</h1>
         <div className="Info">
             <div className="Author">{author}</div>
@@ -11,4 +11,4 @@ const post = ({ title, author }) => (
     </article>
 );
 
-export default post;
+export default Post;
