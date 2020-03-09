@@ -16,13 +16,18 @@ const FullPost = ({ id }) => {
         getFullPost();
     }, [getFullPost]);
 
+    const deletePostHandler = () => {
+        axios.delete(`http://jsonplaceholder.typicode.com/posts/${id}`)
+            .then(response => console.log(response));
+    }
+
     return loadedPost
         ? (
             <div className="FullPost">
                 <h1>{loadedPost.title}</h1>
                 <p>{loadedPost.body}</p>
                 <div className="Edit">
-                    <button className="Delete">Delete</button>
+                    <button className="Delete" onClick={deletePostHandler}>Delete</button>
                 </div>
             </div>
         )
