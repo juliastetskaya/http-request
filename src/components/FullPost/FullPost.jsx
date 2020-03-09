@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 import './FullPost.css';
 
 const FullPost = ({ id }) => {
-    const text = <p style={{textAlign: 'center'}}>Please select a Post!</p>;
-    const post = (
-        <div className="FullPost">
-            <h1>Title</h1>
-            <p>Content</p>
-            <div className="Edit">
-                <button className="Delete">Delete</button>
-            </div>
-        </div>
-    );
+    const [loadedPost, setLoadedPost] = useState(null);
+    const getFullPost = useCallback(() => {
+        if (id) {
+            axios.get(`http://jsonplaceholder.typicode.com/posts/${id}`)
+                .then(response => setLoadedPost(response.data));
+        }
+    }, [id]);
 
-    return id ? post : text;
+    useEffect(() => {
+        getFullPost();
+    }, [getFullPost]);
+
+    return loadedPost
+        ? (
+            <div className="FullPost">
+                <h1>{loadedPost.title}</h1>
+                <p>{loadedPost.body}</p>
+                <div className="Edit">
+                    <button className="Delete">Delete</button>
+                </div>
+            </div>
+        )
+        : <p style={{textAlign: 'center'}}>Please select a Post!</p>;
 }
 
 export default FullPost;

@@ -27,8 +27,6 @@ const Blog = () => {
         setSelectedPostId(id);
     };
 
-    console.log('selectedPostId', selectedPostId);
-
     return (
         <div>
             <section className="Posts">
