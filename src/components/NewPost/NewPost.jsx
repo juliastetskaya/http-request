@@ -11,7 +11,7 @@ const NewPost = () => {
     });
 
     const addPostHandler = () => {
-        axios.post('http://jsonplaceholder.typicode.com/posts', post)
+        axios.post('/posts', post)
             .then(response => console.log(response));
     };
 

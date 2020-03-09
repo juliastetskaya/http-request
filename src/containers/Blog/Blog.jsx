@@ -11,7 +11,7 @@ const Blog = () => {
     const [error, setError] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const getPosts = useCallback(() => {
-        axios.get('http://jsonplaceholder.typicode.com/posts')
+        axios.get('/posts')
             .then(response => {
                 setPosts(response.data.slice(0, 4).map(post => ({
                     ...post,

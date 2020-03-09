@@ -7,7 +7,7 @@ const FullPost = ({ id }) => {
     const [loadedPost, setLoadedPost] = useState(null);
     const getFullPost = useCallback(() => {
         if (id) {
-            axios.get(`http://jsonplaceholder.typicode.com/posts/${id}`)
+            axios.get(`/posts/${id}`)
                 .then(response => setLoadedPost(response.data));
         }
     }, [id]);
@@ -17,7 +17,7 @@ const FullPost = ({ id }) => {
     }, [getFullPost]);
 
     const deletePostHandler = () => {
-        axios.delete(`http://jsonplaceholder.typicode.com/posts/${id}`)
+        axios.delete(`/posts/${id}`)
             .then(response => console.log(response));
     }
 
