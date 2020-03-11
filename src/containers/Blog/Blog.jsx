@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Posts from '../Posts/Posts';
+import NewPost from '../NewPost/NewPost';
 import './Blog.css';
 
 const Blog = () => (
@@ -15,6 +16,7 @@ const Blog = () => (
             </nav>
         </header>
         <Route path="/" exact component={Posts} />
+        <Route path="/new-post" component={NewPost} />
     </div>
 );
 
