@@ -4,7 +4,7 @@ import axios from 'axios';
 import Post from '../../components/Post/Post';
 import './Posts.css';
 
-const Posts = ({ postSelectedHandler }) => {
+const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(false);
     
@@ -32,7 +32,6 @@ const Posts = ({ postSelectedHandler }) => {
                     key={id}
                     title={title}
                     author={author}
-                    clickHandler={() => postSelectedHandler(id)}
                 />)
             : <p style={{ textAlign: 'center', color: 'red'}}>Something went wrong!</p>}
         </section>
