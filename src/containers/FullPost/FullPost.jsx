@@ -19,7 +19,7 @@ const FullPost = ({ id }) => {
     const deletePostHandler = () => {
         axios.delete(`/posts/${id}`)
             .then(response => console.log(response));
-    }
+    };
 
     return loadedPost
         ? (
