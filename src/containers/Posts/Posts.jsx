@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Post from '../../components/Post/Post';
@@ -28,11 +29,12 @@ const Posts = () => {
     return (
         <section className="Posts">
             {!error ? posts.map(({ id, title, author }) =>
-                <Post
-                    key={id}
-                    title={title}
-                    author={author}
-                />)
+                <Link to={`/${id}`} key={id}>
+                    <Post
+                        title={title}
+                        author={author}
+                    />
+                </Link>)
             : <p style={{ textAlign: 'center', color: 'red'}}>Something went wrong!</p>}
         </section>
     );

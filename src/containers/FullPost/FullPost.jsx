@@ -3,21 +3,21 @@ import axios from 'axios';
 
 import './FullPost.css';
 
-const FullPost = ({ id }) => {
+const FullPost = ({ match }) => {
     const [loadedPost, setLoadedPost] = useState(null);
     const getFullPost = useCallback(() => {
-        if (id) {
-            axios.get(`/posts/${id}`)
+        if (match.params.id) {
+            axios.get(`/posts/${match.params.id}`)
                 .then(response => setLoadedPost(response.data));
         }
-    }, [id]);
+    }, [match.params.id]);
 
     useEffect(() => {
         getFullPost();
     }, [getFullPost]);
 
     const deletePostHandler = () => {
-        axios.delete(`/posts/${id}`)
+        axios.delete(`/posts/${match.params.id}`)
             .then(response => console.log(response));
     };
 
