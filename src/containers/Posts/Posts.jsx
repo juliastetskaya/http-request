@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 import Post from '../../components/Post/Post';
+import FullPost from '../FullPost/FullPost';
 import './Posts.css';
 
-const Posts = ({ history }) => {
+const Posts = ({ history, match }) => {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(false);
     
@@ -26,20 +28,23 @@ const Posts = ({ history }) => {
     }, [getPosts]);
 
     const postSelectedHandler = (id) => {
-        history.push({ pathname: `/${id}` });
+        history.push({ pathname: `/posts/${id}` });
     };
 
     return (
-        <section className="Posts">
-            {!error ? posts.map(({ id, title, author }) =>
-                <Post
-                    key={id}
-                    title={title}
-                    author={author}
-                    clickHandler={() => postSelectedHandler(id)}
-                />)
-            : <p style={{ textAlign: 'center', color: 'red'}}>Something went wrong!</p>}
-        </section>
+        <div>
+            <section className="Posts">
+                {!error ? posts.map(({ id, title, author }) =>
+                    <Post
+                        key={id}
+                        title={title}
+                        author={author}
+                        clickHandler={() => postSelectedHandler(id)}
+                    />)
+                : <p style={{ textAlign: 'center', color: 'red'}}>Something went wrong!</p>}
+            </section>
+            <Route path={`${match.url}/:id`} exact component={FullPost} />
+        </div>
     );
 };
 
