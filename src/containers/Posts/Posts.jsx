@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Post from '../../components/Post/Post';
 import './Posts.css';
 
-const Posts = () => {
+const Posts = ({ history }) => {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(false);
     
@@ -26,15 +25,19 @@ const Posts = () => {
         getPosts();
     }, [getPosts]);
 
+    const postSelectedHandler = (id) => {
+        history.push({ pathname: `/${id}` });
+    };
+
     return (
         <section className="Posts">
             {!error ? posts.map(({ id, title, author }) =>
-                <Link to={`/${id}`} key={id}>
-                    <Post
-                        title={title}
-                        author={author}
-                    />
-                </Link>)
+                <Post
+                    key={id}
+                    title={title}
+                    author={author}
+                    clickHandler={() => postSelectedHandler(id)}
+                />)
             : <p style={{ textAlign: 'center', color: 'red'}}>Something went wrong!</p>}
         </section>
     );
