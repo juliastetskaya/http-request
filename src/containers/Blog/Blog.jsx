@@ -18,7 +18,8 @@ const Blog = () => (
         <Switch>
             <Route path="/posts/" component={Posts} />
             <Route path="/new-post" component={NewPost} />
-            <Redirect from="/" to="/posts" />
+            <Route render={() => <h1 style={{ textAlign: 'center'}}>The page wasn't found!</h1>} />
+            {/* <Redirect from="/" to="/posts" /> */}
         </Switch>
     </div>
 );
